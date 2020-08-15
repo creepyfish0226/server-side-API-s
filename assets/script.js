@@ -14,9 +14,11 @@ function weatherSearch(name) {
                     h3.text(results.name + " (" + moment.unix(results.dt).format("L") + ")")
                     var icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + results.weather[0].icon + ".png")
                     h3.append(icon)
-                    var wind = $("<div>").text("Wind speed: "+results.wind.speed)
+                    var temp = $("<div>").text("Temperature: "+results.main.temp+" Kelvin")
+                    var humid = $("<div>").text("Humidity: "+results.main.humidity +"%")
+                    var wind = $("<div>").text("Wind speed: "+results.wind.speed +" MPH")
                     var uv = $("<div>").text("UV index: "+UV[0].value)
-                    jumbo.append(h3,wind, uv)
+                    jumbo.append(h3,temp, humid, wind, uv)
                     $(".current").append(jumbo)
                 })
         })
@@ -44,3 +46,4 @@ $("#previous").on("click", ".prevSearch", function () {
     var searchName = $(this).attr("data-name")
     weatherSearch(searchName)
 })
+
